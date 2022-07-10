@@ -6,21 +6,26 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "prestart": "npm run build",
-
     "build": "tsc",
     "format": "prettier --write '**/*.{ts,js}'",
-    "lint": "eslint --fix '**/*.{ts,js}'",
+    "lint": "eslint --ignore-path .gitignore --ext .ts",
+    "lint:fix": "npm run lint -- --fix",
     "start": "node dist/server.js",
-    "start:dev": "nodemon",
-    "test": "jest",
+    "dev": "ts-node-dev ./src/server.ts",
+    "test": "jest --verbose",
     "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jeastman19/nodejs-express-typescript-template.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "express",
+    "typescript",
+    "template"
+  ],
+  "author": "Jorge Eastman <jeastman19@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jeastman19/nodejs-express-typescript-template/issues"
@@ -31,6 +36,8 @@
     "@types/eslint": "^8.4.5",
     "@types/express": "^4.17.13",
     "@types/helmet": "^4.0.0",
+    "@types/http-errors": "^1.8.2",
+    "@types/morgan": "^1.9.3",
     "@types/node": "^18.0.3",
     "@types/prettier": "^2.6.3",
     "@types/supertest": "^2.0.12",
@@ -43,11 +50,11 @@
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-promise": "^6.0.0",
     "jest": "^28.1.2",
-    "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "supertest": "^6.2.4",
     "ts-node": "^10.8.2",
+    "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.0.0",
     "typescript": "^4.7.4"
   },

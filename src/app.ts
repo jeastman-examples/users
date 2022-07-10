@@ -1,16 +1,24 @@
 import createError from 'http-errors';
-import express from 'express';
+import cors from 'cors';
+import express, { Express, NextFunction, Request, Response } from 'express';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import router from './routes';
 
-// const usersRouter = require('./routes/users');
-
-const app = express();
+const app: Express = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use('/users', usersRouter);
-app.use((req, res, next) => {
+app.use(helmet());
+app.use(morgan('combined'));
+
+app.use('/', router);
+
+app.use((req: Request, res: Response, next: NextFunction) => {
     next(createError(404));
 });
-app.use(function (err, req, res, next) {
+
+app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
     res.status(err.status || 500);
     res.send(err);
 });
