@@ -19,12 +19,16 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
+    next(createError(404));
+});
+
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.send(err);
 });
 
 /**
- * @todo: Add a handler for uncaught exceptions
+ * @todo Add a handler for uncaught exceptions
  * @body {@link https://expressjs.com/en/guide/error-handling.html}
  */
 export default app;
