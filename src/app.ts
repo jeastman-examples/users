@@ -23,4 +23,8 @@ app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
     res.send(err);
 });
 
+/**
+ * @todo: Add a handler for uncaught exceptions
+ * @body {@link https://expressjs.com/en/guide/error-handling.html}
+ */
 export default app;
